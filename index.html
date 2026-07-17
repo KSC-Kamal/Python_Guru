@@ -33,6 +33,9 @@
   #topstrip{background:linear-gradient(90deg,#0c4530,#0f5138);color:#dff0e8;font-family:var(--mono);font-size:.74rem;padding:12px 16px;border-radius:0 0 14px 14px;margin:0 -6px 16px;box-shadow:0 3px 10px rgba(12,69,48,.25);letter-spacing:.3px}
   #topstrip b{color:#ffd449}
   #topstrip .crumb{color:#9fd3b8}
+  #topstrip{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  #topstrip .str{white-space:nowrap}
+  #topstrip .str button{background:#ffd449;color:#1a1500;border:none;border-radius:8px;padding:6px 10px;font-family:var(--mono);font-size:.64rem;font-weight:700;cursor:pointer;margin-left:6px;touch-action:manipulation}
   @media(max-width:820px){
     .app{flex-direction:column}
     aside{width:100%;height:auto;position:sticky;top:0;z-index:30;padding:8px 0;display:flex;flex-direction:row;align-items:center;overflow-x:auto;white-space:nowrap;background:#0c4530;border-right:none;border-bottom:3px solid #ffd449}
@@ -105,8 +108,9 @@
   .diff.E{background:#dff3e8;color:#177a52}.diff.M{background:#fdf3d7;color:#a87700}.diff.T{background:#fde5e5;color:#c23a3a}
   .qtext{font-size:.93rem;line-height:1.5;margin-bottom:10px}
   .opts{display:flex;flex-direction:column;gap:8px}
-  .opt{background:var(--panel2);border:1.5px solid var(--rule);border-radius:10px;padding:11px 12px;font-family:var(--mono);font-size:.83rem;cursor:pointer;text-align:left;color:var(--ink);white-space:pre-wrap}
-  .opt.sel{border-color:var(--blue);background:#e7f2fb}
+  .opt{background:var(--panel2);border:1.5px solid var(--rule);border-radius:10px;padding:12px 13px;font-family:var(--mono);font-size:.83rem;cursor:pointer;text-align:left;color:var(--ink);white-space:pre-wrap;touch-action:manipulation;-webkit-tap-highlight-color:rgba(55,118,171,.2)}
+  .opt.sel{border:2.5px solid var(--blue);background:#dceafc;font-weight:700;box-shadow:0 0 0 2px rgba(55,118,171,.2)}
+  .opt.sel::before{content:'✔ ';color:var(--blue);font-weight:900}
   .opt.right{border-color:var(--ok);background:#e5f7ed}
   .opt.wrong{border-color:var(--bad);background:#fdeaea}
   input.nat,textarea.codein{background:#fff;border:1.5px solid var(--rule);border-radius:10px;color:var(--ink);font-family:var(--mono);padding:10px 12px;font-size:.85rem;width:100%}
@@ -132,6 +136,8 @@
   .bar i.low{background:var(--bad)}.bar i.mid{background:var(--warn)}
   .grade{font-family:var(--mono);font-size:2.8rem;color:var(--green2);text-align:center}
   /* ---------- CHAT ---------- */
+  #mobilefoot{display:none}
+  @media(max-width:820px){#mobilefoot{display:block;text-align:center;font-size:.66rem;color:var(--dim);padding:14px 10px 10px;font-family:var(--mono)}#mobilefoot b{color:var(--green2)}}
   #chatfab{position:fixed;bottom:20px;right:20px;width:58px;height:58px;border-radius:50%;background:var(--green2);color:#fff;border:none;font-size:1.5rem;cursor:pointer;box-shadow:0 4px 14px rgba(15,81,56,.35);z-index:60}
   #chatpanel{position:fixed;bottom:0;right:0;width:100%;max-width:420px;height:70vh;background:var(--panel);border:1px solid var(--rule);border-radius:16px 16px 0 0;box-shadow:0 -4px 30px rgba(21,48,60,.25);z-index:70;display:flex;flex-direction:column;transform:translateY(105%);transition:transform .25s}
   #chatpanel.open{transform:translateY(0)}
@@ -170,6 +176,7 @@
 </main>
 </div>
 
+<div id="mobilefoot">created by <b>Kamal Singh Chauhan — KSC</b><br>kamal.ksc26@gmail.com</div>
 <button id="chatfab" onclick="toggleChat()" title="Ask AI tutor">🤖</button>
 <div id="chatpanel">
   <div id="chathead"><span>🐍 AI TUTOR — ask any doubt</span><span style="cursor:pointer" onclick="toggleChat()">✕</span></div>
@@ -838,13 +845,19 @@ const $=id=>document.getElementById(id);
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function codeBlock(c){if(!c)return'';const lines=c.split('\n');return `<div class="code"><div class="lnos">${lines.map((_,i)=>i+1).join('\n')}</div><div class="csrc">${esc(c)}</div></div>`;}
 let lastCtx='the dashboard';
-function go(v){['dash','theory','module','drill','mock','lab','report'].forEach(x=>$('view-'+x).classList.add('hidden'));$('view-'+v).classList.remove('hidden');
+function go(v){curView=v;['dash','theory','module','drill','mock','lab','report'].forEach(x=>$('view-'+x).classList.add('hidden'));$('view-'+v).classList.remove('hidden');
   const map={dash:'dash',theory:'theory',module:'theory',drill:'drill',mock:'mock',lab:'lab',report:'report'};
   document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
   const nb=$('nb-'+map[v]);if(nb)nb.classList.add('active');
   if(v==='dash')renderDash(); window.scrollTo(0,0);}
 function daysTo(dstr){if(!dstr)return null;return Math.ceil((new Date(dstr)-new Date())/(864e5));}
-function setStrip(h){const s=$('topstrip');if(s)s.innerHTML=h;}
+let curView='dash',inProb=false;
+function setStrip(h){const s=$('topstrip');if(s)s.innerHTML='<div class="stl">'+h+'</div><div class="str"><button onclick="goBack()">← Back</button><button onclick="go(\'dash\')">🏠 Home</button></div>';}
+function goBack(){
+  if(curView==='module'){openTheory();return;}
+  if(curView==='lab'&&inProb){inProb=false;renderLab();return;}
+  go('dash');
+}
 function qById(id){return BANK.find(q=>q.id===Number(id));}
 
 /* ============ DASHBOARD ============ */
@@ -926,6 +939,12 @@ function openModule(id){
   }
   let traps=t.traps.length?t.traps.map(x=>`<div class="trap"><b>⚠ TRAP:</b> ${x}</div>`).join(''):'<p style="color:var(--dim);font-size:.85rem">No special traps here.</p>';
   const qa=(t.qa&&t.qa.length)?t.qa.map((x,i)=>`<div class="mod" style="flex-direction:column;align-items:flex-start;cursor:pointer" onclick="this.querySelector('.qaa').classList.toggle('hidden')"><span class="mt"><b>Q${i+1}.</b> ${x[0]}</span><span class="qaa hidden" style="margin-top:8px;font-size:.85rem;color:var(--green2)"><b>Ans:</b> ${x[1]}</span></div>`).join(''):'';
+  const quizBtn = t.w===0
+    ? `<button class="btn" onclick="openDrill('r14')">🎯 Start Weeks 0–4 Quiz ▶</button>`
+    : `<button class="btn" onclick="openDrill('w${t.w}')">🎯 Start Week ${t.w} Quiz ▶ (random)</button>`;
+  const nextL = `<div class="btnrow"><button class="btn" onclick="modTab('T')">Next: ⚠ Traps →</button></div>`;
+  const nextT = qa ? `<div class="btnrow"><button class="btn" onclick="modTab('Q')">Next: 🔁 Q&A →</button></div>` : `<div class="btnrow">${quizBtn}</div>`;
+  const nextQ = `<div class="btnrow">${quizBtn}</div>`;
   $('view-module').innerHTML=`<span class="back" onclick="openTheory()">← back</span>
   <div class="card"><h3>${t.title} <span style="font-family:var(--mono);font-size:.65rem;color:var(--dim)">WEEK ${t.w}</span></h3></div>
   <div class="tabs">
@@ -933,10 +952,9 @@ function openModule(id){
     <div class="tab" id="tabT" onclick="modTab('T')">⚠ TRAPS</div>
     ${qa?`<div class="tab" id="tabQ" onclick="modTab('Q')">🔁 Q&A</div>`:''}
   </div>
-  <div id="modL">${learn}</div>
-  <div id="modT" class="hidden">${traps}</div>
-  ${qa?`<div id="modQ" class="hidden"><div class="banner">Tap a question to reveal its answer — perfect for last-day revision.</div>${qa}</div>`:''}
-  <div class="btnrow"><button class="btn" onclick="openDrill('w${t.w}')">Drill Week ${t.w} →</button></div>`;
+  <div id="modL">${learn}${nextL}</div>
+  <div id="modT" class="hidden">${traps}${nextT}</div>
+  ${qa?`<div id="modQ" class="hidden"><div class="banner">Tap a question to reveal its answer — perfect for last-day revision.</div>${qa}${nextQ}</div>`:''}`;
   go('module');lastCtx='reading the theory module "'+t.title+'" (Week '+t.w+')';setStrip(`<b>📖 THEORY</b> <span class="crumb">▸ Week ${t.w} ▸</span> <b>${t.title}</b>`);
 }
 function modTab(x){for(const k of ['L','T','Q']){const tb=$('tab'+k),bd=$('mod'+k);if(tb)tb.classList.toggle('on',x===k);if(bd)bd.classList.toggle('hidden',x!==k);}}
@@ -1107,7 +1125,7 @@ async function submitMock(){
 
 /* ============ CODE LAB — stepped levels ============ */
 let pyodide=null,pyLoading=false,curProb=null;
-function renderLab(){
+function renderLab(){inProb=false;
   const groups=[['E','LEVEL 1 · EASY — warm-up, build confidence','#1e9e63'],['M','LEVEL 2 · MODERATE — real exam patterns','#c78a00'],['T','LEVEL 3 · TOUGH — OPPE difficulty','#d64545']];
   let html=`<h2># code lab — the OPPE training ground</h2>
   <div class="banner">Climb step by step: finish <b>Level 1</b> before Level 2, Level 2 before Level 3. Write real Python, hit <b>Run tests</b>, and get PASS/FAIL per test case — exactly the OPPE workflow. (Python loads once on first run, ~10 s.)</div>`;
@@ -1122,7 +1140,7 @@ function renderLab(){
   }
   $('view-lab').innerHTML=html;go('lab');lastCtx='browsing Code Lab problems';setStrip(`<b>💻 CODE LAB</b> <span class="crumb">▸</span> 3 levels · ${Object.keys(S.solved||{}).length}/${OPPE.length} solved`);
 }
-function openProb(id){
+function openProb(id){inProb=true;
   curProb=OPPE.find(p=>p.id===id);
   const p=curProb;
   const tcs=p.tests.map((t,i)=>`<div class="tc" id="tc-${i}"><b>Test ${i+1}</b> · input: <span style="color:var(--blue)">${esc(t.i).replace(/\n/g,' ⏎ ')}</span> · expected: <span style="color:var(--green2)">${esc(t.o).replace(/\n/g,' ⏎ ')}</span><span id="tcr-${i}"></span></div>`).join('');
@@ -1295,6 +1313,15 @@ async function sendChat(){
   }
   $('chatlog').scrollTop=1e9;
 }
+
+/* Delegated tap handler — bulletproof option selection on all browsers */
+document.addEventListener('click',function(e){
+  const b=e.target.closest('.opt');
+  if(b&&b.id&&b.id.indexOf('opt-')===0){
+    const parts=b.id.split('-'); /* opt-mode-qid-idx */
+    pick(parts[1],Number(parts[2]),Number(parts[3]));
+  }
+},true);
 
 loadState();
 </script>
