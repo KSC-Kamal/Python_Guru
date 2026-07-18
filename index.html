@@ -497,7 +497,6 @@ const BANK=[
 {id:74,w:6,t:"Functions",d:'T',type:"NAT",m:4,q:"Real Oct-2024 paper style — input is 'The extraordinary performance'. What integer prints?",c:"words = input().split()\nvalue = 0\nfor word in words:\n    value += max(min(len(word), 12), 9)\nprint(value)",a:"32",e:"Lengths 3,13,11 → min(·,12): 3,12,11 → max(·,9): 9,12,11 → 32."},
 {id:75,w:6,t:"Tuples",d:'M',type:"MCQ",m:3,q:"What is the output?",c:"t = ('a','p','p','l','e')\nprint(t.count('p'), t.index('l'))",o:["2 3","2 2","3 3","Error"],a:0,e:"Tuples have exactly these two methods: count and index."},
 {id:76,w:6,t:"Dictionaries",d:'M',type:"MCQ",m:3,q:"What is the output?",c:"d = {1: 10, 3: 30, 2: 20}\nprint(sorted(d.keys()))",o:["[1, 2, 3]","[10, 20, 30]","{1, 2, 3}","[1, 3, 2]"],a:0,e:"sorted() on keys → ascending list of keys."},
-,
 {id:100,w:1,t:"Strings",d:'E',type:"MCQ",m:3,q:"What is the output?",c:"s = 'stream'\nprint(s[0:2])",o:["str", "s", "st", "t"],a:2,e:"Slice [0:2] takes indexes 0 to 1 (the stop 2 is NOT included) → 'st'."},
 {id:101,w:1,t:"Strings",d:'E',type:"MCQ",m:3,q:"What is the output?",c:"s = 'monsoon'\nprint(s[0:2])",o:["mon", "o", "mo", "m"],a:2,e:"Slice [0:2] takes indexes 0 to 1 (the stop 2 is NOT included) → 'mo'."},
 {id:102,w:1,t:"Strings",d:'E',type:"MCQ",m:3,q:"What is the output?",c:"s = 'coffee'\nprint(s[0:3])",o:["coff", "co", "of", "cof"],a:3,e:"Slice [0:3] takes indexes 0 to 2 (the stop 3 is NOT included) → 'cof'."},
@@ -709,6 +708,24 @@ const BANK=[
 {id:316,w:6,t:"Sorting",d:'M',type:"MCQ",m:3,q:"What is the output?",c:"print(sorted('mango'))",o:["'agmno'", "['m', 'a', 'n', 'g', 'o']", "['a', 'g', 'm', 'n', 'o']", "Error"],a:2,e:"sorted() works on a string but ALWAYS returns a LIST of characters, in alphabetical order."},
 {id:317,w:6,t:"Dictionaries",d:'T',type:"MCQ",m:4,q:"What is the output?",c:"words = ['it', 'it', 'was', 'is']\nd = {}\nfor w in words:\n    if w in d:\n        d[w] += 1\n    else:\n        d[w] = 1\nprint(d)",o:["{'it': 1, 'was': 1, 'is': 1}", "Error", "4", "{'it': 2, 'was': 1, 'is': 1}"],a:3,e:"The counting pattern: first time a word appears it gets 1; every repeat adds 1."},
 {id:318,w:6,t:"Dictionaries",d:'T',type:"MCQ",m:4,q:"What is the output?",c:"words = ['was', 'was', 'it', 'it']\nd = {}\nfor w in words:\n    if w in d:\n        d[w] += 1\n    else:\n        d[w] = 1\nprint(d)",o:["{'was': 1, 'it': 1}", "4", "Error", "{'was': 2, 'it': 2}"],a:3,e:"The counting pattern: first time a word appears it gets 1; every repeat adds 1."}
+,
+{id:400,w:1,t:"Data types",d:'E',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression 5 + 2 ?",c:"",o:["int", "float", "str", "Invalid Expression (raises an error)"],a:0,e:"int + int stays int. Type only changes when a float enters the maths."},
+{id:401,w:1,t:"Data types",d:'E',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression 5 + 2.0 ?",c:"",o:["float", "int", "str", "Invalid Expression (raises an error)"],a:0,e:"One float in the sum makes the WHOLE result float: 7.0."},
+{id:402,w:1,t:"Data types",d:'E',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression 5 / 2 ?",c:"",o:["float", "int", "str", "Invalid Expression (raises an error)"],a:0,e:"Single / ALWAYS returns float — even 10/5 gives 2.0."},
+{id:403,w:1,t:"Data types",d:'E',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression 5 // 2 ?",c:"",o:["int", "float", "str", "Invalid Expression (raises an error)"],a:0,e:"int // int gives int (2). But note: 5.0 // 2 would give float 2.0!"},
+{id:404,w:1,t:"Data types",d:'M',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression 5 ** 2.0 ?",c:"",o:["float", "int", "str", "Invalid Expression (raises an error)"],a:0,e:"Power with a float exponent → float (25.0)."},
+{id:405,w:1,t:"Data types",d:'M',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression '5' * 2 ?",c:"",o:["str", "int", "float", "Invalid Expression (raises an error)"],a:0,e:"string * int = repetition → '55', still a string."},
+{id:406,w:1,t:"Data types",d:'T',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression '5' * 2.0 ?",c:"",o:["Invalid Expression (raises an error)", "str", "float", "int"],a:0,e:"You can repeat a string only by an INT. string * float → TypeError."},
+{id:407,w:1,t:"Data types",d:'M',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression '5' + 2 ?",c:"",o:["Invalid Expression (raises an error)", "str", "int", "float"],a:0,e:"+ cannot mix str and int → TypeError. '5' + '2' would work ('52')."},
+{id:408,w:1,t:"Data types",d:'M',type:"MCQ",m:2,q:"【GA-W1】 What will be the output TYPE of the expression \"5 + 2\" ?",c:"",o:["str", "int", "float", "Invalid Expression (raises an error)"],a:0,e:"The WHOLE thing is inside quotes — it is just text, no maths happens."},
+{id:409,w:2,t:"String methods",d:'T',type:"MSQ",m:3,q:"【GA-W2】 Select ALL inputs for which this code prints PERFECT!",c:"word = input()\nmatch = False\nif word.count('(') == word.count(')'):\n    if word.count('[') == word.count(']'):\n        if word.count('{') == word.count('}'):\n            match = True\nif match:\n    print('PERFECT!')\nelse:\n    print('IMPERFECT!')",o:["(a{b[c]})", "abcd", ")(][}{", "a(db]"],a:[0, 1, 2],e:"The code only compares COUNTS, not positions! 'abcd' has 0 of each bracket — 0==0 passes all three checks. ')(][}{' has equal counts too. Only 'a(db]' fails: one '(' but zero ')'."},
+{id:410,w:2,t:"Conditionals",d:'M',type:"MCQ",m:3,q:"【GA-W2】 If s = \"abcd(efgh(ijkl}{{}))\", what is the value of match after this bracket-count code runs?",c:"match = False\nif s.count('(') == s.count(')'):\n    if s.count('[') == s.count(']'):\n        if s.count('{') == s.count('}'):\n            match = True",o:["True — only the NUMBER of opening/closing brackets is considered", "False — only the number of brackets is considered", "False — positions are not considered", "True — number AND position both are considered"],a:0,e:"Counts: ( =2, ) =2; [ =0, ] =0; { =2, } =2. All equal → match=True. Positions are NEVER checked by count()."},
+{id:411,w:3,t:"For & range",d:'T',type:"MSQ",m:3,q:"【GA-W3】 Select ALL inputs for which this code prints True.",c:"word = input()\nvalid = True\nfor i in range(len(word)):\n    char = word[i]\n    if i % 2 == 0 and char not in 'aeiou':\n        valid = False\nprint(valid)",o:["abet", "enamel", "eatery", "onetime"],a:[0, 1, 3],e:"Rule: every EVEN-index character must be a vowel. abet→a,e ✓; enamel→e,a,e ✓; eatery→index 2 is 't' ✗; onetime→o,e,i,e ✓."},
+{id:412,w:3,t:"For & range",d:'T',type:"MSQ",m:3,q:"【GA-W3】 A 10-letter word passes through the above even-index-vowel code and prints True. Which statements MUST be true?",c:"",o:["The letters at even indices are vowels (0-based)", "The word has AT LEAST five vowels", "The word has EXACTLY five vowels", "Every vowel appears only at even indices"],a:[0, 1],e:"Even indices 0,2,4,6,8 = five positions, all vowels → at least 5 vowels. But odd positions can ALSO hold vowels (counter-example: 'aaaaaaaaaa'), so 'exactly five' and 'only at even indices' are NOT guaranteed."},
+{id:413,w:3,t:"Nested loops",d:'T',type:"NAT",m:3,q:"【GA-W3】 How many lines does this code print?",c:"for x in range(100):\n    for y in range(100):\n        if x != y:\n            print(f'{x},{y}')",a:"9900",e:"Total pairs = 100×100 = 10000. The print is skipped whenever x == y, which happens 100 times. 10000 − 100 = 9900."},
+{id:414,w:4,t:"Lists",d:'E',type:"NAT",m:2,q:"【GA-W4】 After this loop, what is len(rolls)?",c:"import random\nrolls = []\nfor i in range(100000):\n    roll = random.randint(1, 6)\n    rolls.append(roll)",a:"100000",e:"The loop runs exactly 100000 times and appends ONE item each time — randomness changes the values, not the count."},
+{id:415,w:4,t:"Lists",d:'T',type:"MCQ",m:3,q:"【GA-W4】 count = number of prime rolls (2,3,5) in rolls. What does some_var = count / len(rolls) represent?",c:"",o:["The probability that a number picked at random FROM THE LIST rolls is prime", "The number of primes between 1 and 100000", "The probability that a random number between 1 and 100000 is prime", "The number of prime numbers in rolls"],a:0,e:"A fraction of the list = a probability ABOUT the list. count alone would be option (d)'s number; dividing by len makes it a probability, and it is about rolls, not about 1..100000."},
+{id:416,w:4,t:"Lists",d:'T',type:"MSQ",m:4,q:"【GA-W4】 L is a non-empty list of DISTINCT positive integers. After this code, flag is True. Which statements MUST be true?",c:"S = 0\nfor x in L:\n    S += x\nflag = False\ny = -1\nfor x in L:\n    if x * len(L) == S:\n        flag = True\n        y = x\n        break",o:["y is an element of the list L", "y is the average (arithmetic mean) of the numbers in L", "y is the smallest number in L", "y is the greatest number in L"],a:[0, 1],e:"x*len(L)==S means x == S/len(L) — the MEAN. And y was picked from inside L, so it is an element. A mean sitting inside the list need not be the min or max."}
 ];
 
 /* =================== OPPE PROBLEMS (solutions verified vs tests) =================== */
@@ -739,6 +756,7 @@ const W0MODS=[
 ],traps:[
  'Python is case-sensitive: Print, PRINT and print are three different names — only print works.',
  'Indentation is not decoration in Python — it is grammar. Wrong spacing = IndentationError.',
+ 'THE COLON RULE: har block kholne wali POORI line ke END mein colon (:) aata hai — if x > 5:  |  for i in range(5):  |  while n > 0:  — keyword ke turant baad nahi, line ke end par. Colon bhoolna = SyntaxError.',
 ],qa:[
  ['What is a variable?','A labelled box in memory that stores a value. Example: age = 17 puts 17 in a box named age.'],
  ['What is the difference between an expression and a statement?','An expression PRODUCES a value (2+3). A statement is a complete instruction (x = 2+3).'],
@@ -804,6 +822,16 @@ const QA_EXTRA={
 };
 for(const t of THEORY){ if(QA_EXTRA[t.id]) t.qa=QA_EXTRA[t.id]; }
 
+/* ===== Hinglish story layer (Developer Note — approved selective plan) ===== */
+const STORY={
+ t2b:{h:"📖 Story: Teen darwaze (if / elif / else)",p:"Socho ek building mein 3 darwaze hain. <b>if</b> = pehla darwaza — 'AGAR yeh khula hai to andar jao, baaki bhool jao'. <b>elif</b> = 'NAHI TO agar doosra khula ho'. <b>else</b> = 'KUCH NAHI to yeh service door to hai hi' — else par kabhi condition nahi lagti. Ek baar koi darwaza khul gaya, baaki check hi nahi hote. Aur haan — <b>har darwaze wali line ke END mein colon (:) lagta hai</b>, warna Python gate par hi rok dega (SyntaxError).",c:"",o:""},
+ t3a:{h:"📖 Story: Bus ka intezaar (while = condition-based)",p:"Bus stop par khade ho. Kab tak? <b>Jab tak bus nahi aati</b> — 5 minute bhi ho sakte hain, 50 bhi. Count pehle se PATA NAHI, sirf CONDITION pata hai. Yahi while loop hai: <b>while bus_nahi_aayi:</b> intezaar karo. Condition True → wait; condition False (bus aa gayi) → loop khatam, chal diye. Isliye jab 'kitni baar' unknown ho aur 'kab rukna hai' pata ho — while use karo. Line ke end mein colon (:) mat bhoolna!",c:"",o:""},
+ t3b:{h:"📖 Story: Gym push-ups (for) & Odometer (nested)",p:"<b>for = gym ke 10 push-ups.</b> Count pehle se FIX hai — 1 se 10, na kam na zyada: for pushup in range(1, 11). Jab ginti pehle se pata ho, for lagao.<br><br><b>Nested loops = gaadi ka odometer / kitab.</b> Bayan wala dial (outer loop) FROZEN rehta hai jab tak dayan wala dial (inner loop) 0–9 poora ghoom na le. Inner poora reset hua → outer sirf 1 badha → inner phir poora chalega. Kitab: Chapter 1 frozen, pages 1–5 palte; tabhi Chapter 2. <b>Inner hamesha fast badhta hai, outer slow.</b> Yahi 'kitni baar chala?' questions ka master key hai: outer × inner.",c:"",o:""},
+ t4c:{h:"📖 Story: The Bracket Law — L[row][col]",p:"<b>Pehla bracket HAMESHA Row (horizontal line), doosra HAMESHA Column.</b> L[2][0] = teesri row ki pehli cheez. Kabhi ulta nahi.<br><br><b>Column-sum ka rule:</b> agar ek COLUMN ka total chahiye, to column wala loop BAHAR rakho (column freeze) aur row wala loop ANDAR (upar se neeche saari rows scan) — index phir bhi L[row][col] hi likhna. Freeze bahar, scan andar — bas yahi yaad rakhna.",c:"",o:""},
+};
+for(const t of THEORY){ if(STORY[t.id]) t.learn.unshift(STORY[t.id]); }
+
+
 /* ============ WEEK RANGES (papers week-wise or combined) ============ */
 const RANGES=[
  {id:'w0',label:'Week 0',weeks:[0]},{id:'w1',label:'Week 1',weeks:[1]},{id:'w2',label:'Week 2',weeks:[2]},{id:'w3',label:'Week 3',weeks:[3]},{id:'w4',label:'Week 4',weeks:[4]},
@@ -858,7 +886,7 @@ function goBack(){
   if(curView==='lab'&&inProb){inProb=false;renderLab();return;}
   go('dash');
 }
-function qById(id){return BANK.find(q=>q.id===Number(id));}
+function qById(id){return BANK.find(q=>q&&q.id===Number(id));}
 
 /* ============ DASHBOARD ============ */
 function coverage(weeks){
@@ -961,8 +989,9 @@ function modTab(x){for(const k of ['L','T','Q']){const tb=$('tab'+k),bd=$('mod'+
 
 /* ============ DRILL ============ */
 let dQueue=[],dIdx=0,dRange='r14',dDiff='all',dMode='all',pSel={},qStart=Date.now();
+let session={ids:[],start:Date.now()};
 function openDrill(range,mode='all'){
-  if(range)dRange=range;dMode=mode;dDiff='all';go('drill');buildDrill();
+  if(range)dRange=range;dMode=mode;dDiff='all';session={ids:[],start:Date.now()};go('drill');buildDrill();
 }
 function buildDrill(){
   const R=RANGES.find(r=>r.id===dRange);
@@ -980,7 +1009,7 @@ function renderDrillUI(){
   <div class="chips">${diffs.map(([v,l])=>`<button class="chip blue ${dDiff===v?'on':''}" onclick="dDiff='${v}';buildDrill()">${l}</button>`).join('')}
   <button class="chip ${dMode==='weak'?'on':''}" onclick="dMode=dMode==='weak'?'all':'weak';buildDrill()">🔁 WEAK PILE</button></div>
   <div id="dhost"></div>
-  <div class="btnrow" style="justify-content:center;margin-top:4px"><button class="btn" onclick="renderReport()">✅ SUBMIT &amp; VIEW REPORT CARD</button></div>`;
+  <div class="btnrow" style="justify-content:center;margin-top:4px"><button class="btn" onclick="renderReport(true)">✅ SUBMIT &amp; VIEW REPORT CARD</button></div>`;
   renderDQ();
 }
 function renderDQ(){
@@ -988,23 +1017,33 @@ function renderDQ(){
   if(!dQueue.length){host.innerHTML=`<div class="banner">Nothing matches this filter. ${dMode==='weak'?'Weak pile is empty — excellent!':''}</div>`;return;}
   if(dIdx>=dQueue.length){host.innerHTML=`<div class="card result-big"><div class="score">set done ✓</div><div class="btnrow" style="justify-content:center"><button class="btn" onclick="renderReport()">See report card</button></div></div>`;return;}
   const q=dQueue[dIdx];
+  delete pSel['p'+q.id];
   host.innerHTML=renderQ(q,'p',dIdx+1,dQueue.length);qStart=Date.now();
   lastCtx='solving this drill question (Week '+q.w+', '+q.t+'): "'+q.q+'" with code:\n'+(q.c||'(no code)')+(q.o?'\nOptions: '+q.o.join(' | '):'');
 }
 function renderQ(q,mode,pos,total){
   let optsHtml=q.type==='NAT'
     ?`<input class="nat" id="nat-${mode}-${q.id}" inputmode="numeric" placeholder="Type the numeric answer">`
-    :`<div class="opts">${q.o.map((o,i)=>`<button class="opt" id="opt-${mode}-${q.id}-${i}" onclick="pick('${mode}',${q.id},${i})">${esc(o)}</button>`).join('')}</div>`;
+    :`<div class="opts">${q.o.map((o,i)=>`<button type="button" class="opt" id="opt-${mode}-${q.id}-${i}">${esc(o)}</button>`).join('')}</div>`;
   const nav=mode==='p'?`<div class="btnrow">${pos>1?`<button class="btn ghost" onclick="dIdx--;renderDQ()">← Previous</button>`:''}<button class="btn" id="chk-${q.id}" onclick="checkP(${q.id})">Check ✓</button><button class="btn ghost" onclick="dIdx++;renderDQ()">Next →</button><button class="btn ghost small" onclick="showHint(${q.id})">💡 Hint</button><button class="btn ghost small" onclick="revealSol(${q.id})">📄 Solution</button><button class="btn ghost small" onclick="askAbout()">🤖 Ask AI_Guru</button></div><div class="expl" id="hint-${q.id}"></div><div class="expl" id="ex-${q.id}"></div>`:'';
   return `<div class="card">
     <div class="qmeta"><span><b style="color:var(--green);font-size:.9rem">Q. ${pos}</b> <span>of ${total}</span> · W${q.w} · ${q.t.toUpperCase()} · ${q.type} <span class="diff ${q.d}">${q.d==='E'?'EASY':q.d==='M'?'MODERATE':'TOUGH'}</span></span><span class="marks">${q.m} marks</span></div>
-    <div class="qtext">${q.q}</div>${codeBlock(q.c)}${optsHtml}${nav}</div>`;
+    <div class="qtext">${q.q}</div>${q.type==='MSQ'?'<div style="font-size:.72rem;color:var(--warn);font-family:var(--mono);margin-bottom:8px">☑ MSQ — select ALL correct options, then press Check</div>':''}${codeBlock(q.c)}${optsHtml}${nav}</div>`;
 }
 function pick(mode,qid,i){
-  pSel[mode+qid]=i;
-  const q=qById(qid);
+  const q=qById(qid);if(!q)return;
+  const k=mode+qid;
+  if(q.type==='MSQ'){
+    pSel[k]=Array.isArray(pSel[k])?pSel[k]:[];
+    const at=pSel[k].indexOf(i);
+    if(at>=0)pSel[k].splice(at,1);else pSel[k].push(i);
+    q.o.forEach((_,j)=>{const el=$(`opt-${mode}-${qid}-${j}`);if(el)el.classList.toggle('sel',pSel[k].includes(j));});
+    return;
+  }
+  pSel[k]=i;
   q.o.forEach((_,j)=>{const el=$(`opt-${mode}-${qid}-${j}`);if(el)el.classList.toggle('sel',j===i);});
 }
+function ansText(q){return q.type==='NAT'?String(q.a):(q.type==='MSQ'?q.a.map(i=>esc(q.o[i])).join('  |  '):esc(q.o[q.a]));}
 async function checkP(qid){
   const q=qById(qid);
   let correct;
@@ -1012,18 +1051,25 @@ async function checkP(qid){
     const v=($(`nat-p-${qid}`).value||'').trim();if(v==='')return;
     correct=(v===String(q.a));
     $(`nat-p-${qid}`).style.borderColor=correct?'var(--ok)':'var(--bad)';
+  }else if(q.type==='MSQ'){
+    const sel=Array.isArray(pSel['p'+qid])?pSel['p'+qid]:[];
+    if(!sel.length)return;
+    correct=(sel.slice().sort().join()===q.a.slice().sort().join());
+    q.o.forEach((_,j)=>{const el=$(`opt-p-${qid}-${j}`);if(q.a.includes(j))el.classList.add('right');else if(sel.includes(j))el.classList.add('wrong');});
   }else{
     const sel=pSel['p'+qid];if(sel===undefined)return;
     correct=(sel===q.a);
     q.o.forEach((_,j)=>{const el=$(`opt-p-${qid}-${j}`);if(j===q.a)el.classList.add('right');else if(j===sel)el.classList.add('wrong');});
   }
   S.attempts[qid]={correct,ts:Date.now(),t:Math.max(1,Math.round((Date.now()-qStart)/1000))};
+  if(!session.ids.includes(qid))session.ids.push(qid);
   if(!correct&&!S.wrong.includes(qid))S.wrong.push(qid);
   if(correct)S.wrong=S.wrong.filter(x=>x!==qid);
-  await saveState();
   const ex=$(`ex-${qid}`);
-  ex.innerHTML='<b>📄 DETAILED SOLUTION</b> — '+(correct?'<b>Correct! 🎉</b> ':`<b>Not quite. Correct answer: ${q.type==='NAT'?q.a:esc(q.o[q.a])}.</b> `)+q.e+`<div class="btnrow"><button class="btn" onclick="dIdx++;renderDQ()">Next question →</button></div>`;
-  ex.classList.add('show');$(`chk-${qid}`).disabled=true;
+  if(!ex)return;
+  ex.innerHTML='<b>📄 DETAILED SOLUTION</b> — '+(correct?'<b>Correct! 🎉</b> ':`<b>Not quite. Correct answer: ${ansText(q)}.</b> `)+q.e+`<div class="btnrow"><button class="btn" onclick="dIdx++;renderDQ()">Next question →</button></div>`;
+  ex.classList.add('show');const cb=$(`chk-${qid}`);if(cb)cb.disabled=true;
+  saveState();
 }
 
 const TOPIC_HINTS={
@@ -1061,12 +1107,13 @@ async function revealSol(qid){
   if(!S.attempts[qid]){
     S.attempts[qid]={correct:false,ts:Date.now(),t:Math.max(1,Math.round((Date.now()-qStart)/1000))};
     if(!S.wrong.includes(qid))S.wrong.push(qid);
+    if(!session.ids.includes(qid))session.ids.push(qid);
     await saveState();
   }
-  ex.innerHTML=`<b>📄 DETAILED SOLUTION — answer: ${q.type==='NAT'?q.a:esc(q.o[q.a])}.</b> `+q.e+`<div class="btnrow"><button class="btn" onclick="dIdx++;renderDQ()">Next question →</button></div>`;
+  ex.innerHTML=`<b>📄 DETAILED SOLUTION — answer: ${ansText(q)}.</b> `+q.e+`<div class="btnrow"><button class="btn" onclick="dIdx++;renderDQ()">Next question →</button></div>`;
   ex.classList.add('show');
   const c=$(`chk-${qid}`);if(c)c.disabled=true;
-  if(q.type!=='NAT'){q.o.forEach((_,j)=>{const el2=$(`opt-p-${qid}-${j}`);if(el2&&j===q.a)el2.classList.add('right');});}
+  if(q.type!=='NAT'){const good=q.type==='MSQ'?q.a:[q.a];q.o.forEach((_,j)=>{const el2=$(`opt-p-${qid}-${j}`);if(el2&&good.includes(j))el2.classList.add('right');});}
 }
 
 /* ============ MOCK ============ */
@@ -1105,6 +1152,7 @@ async function submitMock(){
   for(const q of mockQs){
     max+=q.m;let ok=false,given='—';
     if(q.type==='NAT'){const el=$(`nat-m-${q.id}`);given=el?el.value.trim():'';ok=(given===String(q.a));}
+    else if(q.type==='MSQ'){const sel=Array.isArray(pSel['m'+q.id])?pSel['m'+q.id]:[];if(sel.length){given=sel.map(i=>q.o[i]).join(' | ');ok=(sel.slice().sort().join()===q.a.slice().sort().join());}}
     else{const sel=pSel['m'+q.id];if(sel!==undefined){given=q.o[sel];ok=(sel===q.a);}}
     if(ok)score+=q.m;
     S.attempts[q.id]={correct:ok,ts:Date.now()};
@@ -1112,7 +1160,7 @@ async function submitMock(){
     if(ok)S.wrong=S.wrong.filter(x=>x!==q.id);
     rows+=`<div class="card"><div class="qmeta"><span>W${q.w} · ${q.t}</span><span class="marks" style="color:${ok?'var(--ok)':'var(--bad)'}">${ok?'+'+q.m:'0'}/${q.m}</span></div>
       <div class="qtext">${q.q}</div>${codeBlock(q.c)}
-      <div class="expl show">${ok?'<b>Correct.</b> ':`<b>Your answer: ${esc(String(given)||'—')} · Correct: ${q.type==='NAT'?q.a:esc(q.o[q.a])}.</b> `}${q.e}</div></div>`;
+      <div class="expl show">${ok?'<b>Correct.</b> ':`<b>Your answer: ${esc(String(given)||'—')} · Correct: ${ansText(q)}.</b> `}${q.e}</div></div>`;
   }
   S.mocks=S.mocks||[];S.mocks.push({score,max,range:mockRange,ts:Date.now(),dur:40*60-mockLeft});
   if(S.bestMock===null||score>S.bestMock)S.bestMock=score;
@@ -1220,7 +1268,34 @@ async function runTests(){
 }
 
 /* ============ REPORT CARD ============ */
-function renderReport(){
+function renderReport(fromSession){
+  let sessHtml='';
+  if(fromSession&&session.ids.length){
+    const R=RANGES.find(r=>r.id===dRange);
+    const sq=session.ids.map(qById).filter(Boolean);
+    const sOK=sq.filter(q=>S.attempts[q.id]&&S.attempts[q.id].correct);
+    const sMarks=sq.reduce((n,q)=>n+q.m,0);
+    const sGot=sOK.reduce((n,q)=>n+q.m,0);
+    const sT=sq.reduce((n,q)=>n+((S.attempts[q.id]&&S.attempts[q.id].t)||0),0);
+    const sAcc=sq.length?Math.round(100*sOK.length/sq.length):0;
+    const byW={};sq.forEach(q=>{byW[q.w]=byW[q.w]||{a:0,ok:0};byW[q.w].a++;if(S.attempts[q.id].correct)byW[q.w].ok++;});
+    const wRows=Object.keys(byW).sort((a,b)=>a-b).map(w=>{
+      const v=byW[w];const p=Math.round(100*v.ok/v.a);
+      return `<div class="rowbar"><div class="tl"><span>Week ${w}</span><span>${v.ok}/${v.a} correct (${p}%)</span></div><div class="bar"><i class="${p<50?'low':p<80?'mid':''}" style="width:${p}%"></i></div></div>`;
+    }).join('');
+    sessHtml=`<div class="card" style="border:2px solid var(--green2)">
+      <h3>📄 THIS ATTEMPT — ${R?R.label:''}</h3>
+      <div class="statgrid">
+        <div class="stat"><div class="n">${sq.length}</div><div class="l">attempted now</div></div>
+        <div class="stat"><div class="n">${sAcc}%</div><div class="l">accuracy</div></div>
+        <div class="stat"><div class="n">${sGot}/${sMarks}</div><div class="l">marks scored</div></div>
+        <div class="stat"><div class="n">${Math.floor(sT/60)}m ${sT%60}s</div><div class="l">time taken</div></div>
+      </div>
+      ${wRows}
+      <p style="font-size:.8rem;color:var(--dim)">${sAcc>=80?'Shaandaar attempt! 🎉 Ab agla set ya tough tier lo.':sAcc>=55?'Theek chal raha hai — neeche cumulative analysis dekho, weak topics par focus karo.':'Is set ke galat questions ab Weak Pile mein hain — pehle unhe dobara karo.'}</p>
+    </div>
+    <h2># overall (cumulative) analysis</h2>`;
+  }
   const ids=Object.keys(S.attempts);
   let right=0;ids.forEach(i=>{if(S.attempts[i].correct)right++;});
   const acc=ids.length?Math.round(100*right/ids.length):0;
@@ -1257,7 +1332,7 @@ function renderReport(){
   const mocksHtml=(S.mocks&&S.mocks.length)?S.mocks.slice(-6).map(m=>{
     const r=RANGES.find(x=>x.id===m.range);
     return `<div class="tc"><b>${new Date(m.ts).toLocaleDateString()}</b> · ${r?r.label:''} · <span style="color:var(--green2);font-weight:700">${m.score}/${m.max}</span>${m.dur?` · ⏱ ${Math.round(m.dur/60)} min`:''}</div>`;}).join(''):'<p style="font-size:.82rem;color:var(--dim)">No mocks taken yet.</p>';
-  $('view-report').innerHTML=`<h2># report card${S.name?' — '+esc(S.name):''}</h2>
+  $('view-report').innerHTML=sessHtml+`<h2># report card${S.name?' — '+esc(S.name):''}</h2>
   <div class="card" style="text-align:center">
     <div class="grade">${grade}</div>
     <div style="font-family:var(--mono);font-size:.72rem;color:var(--dim)">overall grade</div>
@@ -1298,7 +1373,7 @@ async function sendChat(){
   $('chatq').value='';addMsg('user',q);
   chatMsgs.push({role:'user',content:q});
   const thinking=addMsg('ai','…thinking');
-  const sys="You are a warm, patient Python tutor inside the Python_Guru app (GURUVER EduTech) for an IITM BS Foundation student preparing for Quiz-1 (19 Jul 2026), OPPE-1 (2 Aug 2026) and End Term. Explain in VERY simple English that even a class 6-8 student understands. Keep answers short (under 150 words), use tiny code examples when helpful, and never just give mock-exam answers away — guide instead. The student is currently: "+lastCtx;
+  const sys="You are AI_Guru — a warm, witty, empathetic Python mentor inside the Python_Guru app (GURUVER EduTech). Reply in friendly Hinglish (Roman Hindi) narration but keep ALL technical terms and code strictly in English. Format every concept answer as: 1) Story/Analogy (real-life, e.g., bus ka intezaar for while, gym push-ups for for-loop, odometer for nested loops), 2) Logic breakdown (kya frozen hai, kya move karta hai), 3) Syntax with colons and indentation highlighted. Always remind about the colon (:) at the end of block-opening lines. You teach an IITM BS Foundation student preparing for Quiz-1 (19 Jul 2026), OPPE-1 (2 Aug 2026) and End Term. Explain in VERY simple English that even a class 6-8 student understands. Keep answers short (under 150 words), use tiny code examples when helpful, and never just give mock-exam answers away — guide instead. The student is currently: "+lastCtx;
   try{
     const resp=await fetch("https://api.anthropic.com/v1/messages",{
       method:"POST",headers:{"Content-Type":"application/json"},
